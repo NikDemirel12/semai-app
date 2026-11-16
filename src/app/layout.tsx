@@ -1,19 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Lora, Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
-
-const lora = Lora({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
-})
-
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-})
 
 export const metadata: Metadata = {
   title: "SEMAI — Tumbuh Bersama | Pengurusan Kebun & Kewangan Tani",
@@ -41,9 +27,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ms">
-      <body
-        className={`${plusJakarta.variable} ${lora.variable} font-sans antialiased bg-[#F5F2EB] text-[#1C251E]`}
-      >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased bg-[#F5F2EB] text-[#1C251E]">
         {children}
       </body>
     </html>

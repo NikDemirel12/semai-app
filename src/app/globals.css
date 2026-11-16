@@ -9,21 +9,23 @@
   --ochre: #B45309;
   --terracotta: #C2410C;
   --border-earth: #E2DDD2;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-serif), Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
 body {
   background-color: #F5F2EB;
   color: #1C251E;
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
 }
 
 .font-serif-editorial {
-  font-family: var(--font-serif), Georgia, Cambria, "Times New Roman", serif;
+  font-family: var(--font-serif);
 }
