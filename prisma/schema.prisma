@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  location  String
+  farms     Farm[]
+  createdAt DateTime @default(now())
+}
+
+model Farm {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plots     Plot[]
+  createdAt DateTime @default(now())
+}
+
+model Plot {
+  id              String        @id @default(cuid())
+  name            String
+  areaSize        Float
+  areaUnit        String        @default("RELUNG")
+  cropType        String
+  plantingDate    DateTime
+  expectedHarvest DateTime
+  baselineYield   Float
+  marketPriceEst  Float
+  status          String        @default("ACTIVE")
+  farmId          String
+  farm            Farm          @relation(fields: [farmId], references: [id], onDelete: Cascade)
+  activities      ActivityLog[]
+  expenses        Expense[]
+  harvests        HarvestLog[]
+}
+
+model ActivityLog {
+  id     String   @id @default(cuid())
+  type   String
+  notes  String?
+  date   DateTime @default(now())
+  plotId String
+  plot   Plot     @relation(fields: [plotId], references: [id], onDelete: Cascade)
+}
+
+model Expense {
+  id         String   @id @default(cuid())
+  title      String
+  amount     Float
+  category   String
+  isHidden   Boolean  @default(false)
+  receiptUrl String?
+  date       DateTime @default(now())
+  plotId     String
+  plot       Plot     @relation(fields: [plotId], references: [id], onDelete: Cascade)
+}
+
+model HarvestLog {
+  id           String   @id @default(cuid())
+  actualWeight Float
+  soldPrice    Float
+  totalRevenue Float
+  date         DateTime @default(now())
+  plotId       String
+  plot         Plot     @relation(fields: [plotId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F5F2EB;
+  --foreground: #1C251E;
+  --surface: #FAF8F3;
+  --forest: #163020;
+  --paddy: #2D6A4F;
+  --ochre: #B45309;
+  --terracotta: #C2410C;
+  --border-earth: #E2DDD2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-serif), Georgia, Cambria, "Times New Roman", serif;
+}
+
+body {
+  background-color: #F5F2EB;
+  color: #1C251E;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+.font-serif-editorial {
+  font-family: var(--font-serif), Georgia, Cambria, "Times New Roman", serif;
+}
